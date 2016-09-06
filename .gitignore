@@ -1,7 +1,6 @@
-CMakeCache.txt
-CMakeFiles
-CMakeScripts
-Makefile
-cmake_install.cmake
-install_manifest.txt
-CTestTestfile.cmake
+/vendor
+/node_modules
+/public/storage
+Homestead.yaml
+Homestead.json
+.env
