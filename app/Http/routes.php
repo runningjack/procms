@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/backend', function () {
+    return view('backend.dashboard');
+});
+Route::get("/backend/pages/index",["as"=>"pageslisting","uses"=>"Backend\PagesController@getIndex"]);
+Route::get("/backend/pages/addnew",['as'=>'addnewpage',"uses"=>"Backend\PagesController@getAddNew"]);
+Route::post("/backend/pages/addnew",["uses"=>"Backend\PagesController@postAddNew"]);
+Route::get("/backend/pages/edit/{id?}",["as"=>"editpage","uses"=>"Backend\PagesController@getEditPage"]);
+
