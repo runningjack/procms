@@ -85,31 +85,32 @@ include("inc/ribbon.php");
                         <div role="content" style="display: block;">
                             <input type="hidden" id="created_by" name="created_by">
                             <input type="hidden" id="type" name="type" value="page">
+                            <input type="hidden" id="id" name="id" value="{{$mypage->id}}">
                             <!-- widget content -->
                             <div class="widget-body ">
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">Title</label>
                                     <div class="col-md-10">
-                                        <input class="form-control" placeholder="New Page Title" id="title" name="title" type="text" required="required" autocomplete="off">
+                                        <input class="form-control" placeholder="New Page Title" id="title" name="title" type="text" required="required" autocomplete="off" value="{{$mypage->title}}">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">Url</label>
                                     <div class="col-md-10">
-                                        <input class="form-control" placeholder="Page Url" id="permalink" name="permalink" type="text" required="required" readonly>
+                                        <input class="form-control" placeholder="Page Url" id="permalink" name="permalink" type="text" required="required" readonly value="{{$mypage->permalink}}">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">Page Description</label>
                                     <div class="col-md-10">
-                                        <input class="form-control input-lg" placeholder="Page Description" id="description" name="description" type="text">
+                                        <input class="form-control input-lg" placeholder="Page Description" id="description" name="description" type="text" value="{{$mypage->description}}">
                                     </div>
                                 </div>
 
 
-                                <textarea id="p_content" name="p_content"></textarea>
+                                <textarea id="p_content" name="p_content">{{$mypage->p_content}}</textarea>
 
                             </div>
                             <!-- end widget content -->
@@ -122,19 +123,19 @@ include("inc/ribbon.php");
                                         <div class="form-group">
                                             <label >Meta Title</label>
 
-                                            <textarea id="meta_title" name="meta_title" class="form-control" placeholder="Title" rows="4"></textarea>
+                                            <textarea id="meta_title" name="meta_title" class="form-control" placeholder="Title" rows="4">{{$mypage->meta_title}}</textarea>
 
                                         </div>
                                         <div class="form-group">
                                             <label class="">Meta Keyword</label>
 
-                                            <textarea id="meta_keyword" name="meta_keyword" class="form-control" placeholder="Keyword" rows="4"></textarea>
+                                            <textarea id="meta_keyword" name="meta_keyword" class="form-control" placeholder="Keyword" rows="4">{{$mypage->meta_keyword}}</textarea>
 
                                         </div>
                                         <div class="form-group">
                                             <label class="">Meta Description</label>
 
-                                            <textarea class="form-control" placeholder="Description" rows="4" name="meta_description" id="meta_description"></textarea>
+                                            <textarea class="form-control" placeholder="Description" rows="4" name="meta_description" id="meta_description">{{$mypage->meta_description}}</textarea>
 
                                         </div>
                                     </fieldset>

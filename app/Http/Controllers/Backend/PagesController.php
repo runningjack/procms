@@ -74,4 +74,52 @@ class PagesController extends Controller
         }
     }
 
+    public function postEditPage(Request $request, $pgId){
+        $input = $request->all();
+        /**
+         * Validate the inputs before they are sent
+         * to database
+         */
+        $validator =  Validator::make($request->all(), [
+            'title'  =>  'required|min:2',
+            'permalink'  =>  'required|min:2',
+            //'p_content'  =>  'required|min:2',
+        ]);
+        $validator->setAttributeNames(['title'=>"Page Title","permalink"=>"page link"]);
+        //$validator->setAttributeName()
+        if ($validator->fails()) {
+            if($request->ajax()){
+                return response()->json($validator->messages()); //if ajax request send ajax response
+            }else{
+                return \Redirect::back()->withErrors($validator)->withInput();
+            }
+        }else{
+            $post = Post::find($input['id']);
+            /**
+             * Loop through the $input and get
+             * $key and $value pair for post
+             * object
+             */
+            array_forget($input,"_token");
+            foreach($input as $key=>$value){
+                $post->$key = $value;
+            }
+            if($post->update()){
+                if($request->ajax()){
+                    return response()->json("record successfully updated");
+                }else{
+                    Session::flash("success_message","Page successfully updated");
+                    return \Redirect::back();
+                }
+            }else{
+                if($request->ajax()){
+                    return response()->json("record could not save successfully");
+                }else{
+                    Session::flash("error_message","Page was not successfully saved");
+                    return \Redirect::back()->withInput();
+                }
+            }
+        }
+    }
+
 }

@@ -7,12 +7,11 @@
  * Date: 9/8/16
  * Time: 11:11 AM
  */
-
 //include left panel (navigation)
 //follow the tree in inc/config.ui.php
-$page_nav["pages"]["sub"]["addnew"]["active"] = true;
+$page_nav["posts"]["sub"]["addnew"]["active"] = true;
 
-$breadcrumbs["pages"] =""
+$breadcrumbs["Posts"] =""
 ?>
 <script src="{{url('')}}/js/app.config.js"></script>
 <!-- ==========================CONTENT STARTS HERE ========================== -->
@@ -89,7 +88,7 @@ include("inc/ribbon.php");
                         <!-- widget content -->
                         <div class="widget-body ">
                             <div class="form-group">
-                                <label class="col-md-2 control-label">Title</label>
+                                <label class="col-md-2 control-label">Title </label>
                                 <div class="col-md-10">
                                     <input class="form-control" placeholder="New Page Title" id="title" name="title" type="text" required="required" autocomplete="off">
                                 </div>
@@ -117,7 +116,6 @@ include("inc/ribbon.php");
 
                         <div class="widget-body">
                             <div class="col-sm-12">
-
                                 <fieldset>
                                     <legend>Meta Setting</legend>
                                     <div class="form-group">
@@ -139,7 +137,6 @@ include("inc/ribbon.php");
 
                                     </div>
                                 </fieldset>
-
                             </div>
                         </div>
                     </div>

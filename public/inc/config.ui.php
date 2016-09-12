@@ -68,7 +68,7 @@ $page_nav = array(
             "list" =>array(
                 "title" => "Events Listing",
                 "icon" => "fa-stack-overflow",
-                "url"=>APP_URL."/backend/event/index"
+                "url"=>APP_URL."/backend/events/index"
             ),
             "addnew"=>array(
                 "title"=>"Add New Event","icon"=>"fa-external-link","url"=>APP_URL."/backend/events/addnew"

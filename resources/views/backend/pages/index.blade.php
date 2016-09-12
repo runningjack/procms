@@ -90,13 +90,13 @@ $breadcrumbs["pages"] =""
                                         <td>{{date_format(date_create($page->updated_at),"Y/m/d")}}</td>
                                         <td>
 
-                                            {{HTML::linkRoute('editpage',"Edit",$page->id)}}
+                                            {!! HTML::decode(HTML::linkRoute('editpage','<i class="fa fa-edit"></i> Edit',$page->id)) !!}
 
                                         </td>
                                         <td>
 
 
-                                            <a href="#" data-toggle="modal" data-target="#myModal{{$page->id}}"><i class="fa fa-trash">Delete</a></i> <!-- Modal -->
+                                            <a href="#" data-toggle="modal" data-target="#myModal{{$page->id}}"><i class="fa fa-trash"> Delete</a></i> <!-- Modal -->
                                             <div class='modal fade' id='myModal{{$page->id}}' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
                                                 <div class='modal-dialog'>
                                                     <div class='modal-content'>

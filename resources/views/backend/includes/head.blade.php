@@ -4,12 +4,13 @@
  * User: USER
  * Date: 9/8/16
  * Time: 11:59 AM
- */ ?>
+ */
+?>
 
 <meta charset="utf-8">
 <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
 
-<title>PROCMS </title>
+<title>{{$page_title}} </title>
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -27,14 +28,11 @@
 <link rel="stylesheet" type="text/css" media="screen" href="{{url('')}}/css/smartadmin-rtl.min.css">
 <!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
 <link rel="stylesheet" type="text/css" media="screen" href="{{url('')}}/css/demo.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="{{url('')}}/js/plugin/colorbox/example4/colorbox.css">
 
 <!-- FAVICONS -->
 <link rel="shortcut icon" href="{{url('')}}/img/favicon/favicon.ico" type="image/x-icon">
 <link rel="icon" href="{{url('')}}/img/favicon/favicon.ico" type="image/x-icon">
-
-<!-- GOOGLE FONT -->
-<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
-
 <!-- Specifying a Webpage Icon for Web Clip
      Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
 <link rel="apple-touch-icon" href="{{url('')}}/img/splash/sptouch-icon-iphone.png">

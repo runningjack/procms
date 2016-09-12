@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSortorderColumnToPostsTable extends Migration
+class AddFeeColumnToPostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,9 @@ class AddSortorderColumnToPostsTable extends Migration
      */
     public function up()
     {
-        //
-        Schema::table('posts', function ($table) {
-            $table->string("sortorder")->after("featured");
+        Schema::table('posts', function (Blueprint $table) {
+            //
+            $table->string("fee")->after("end_time");
         });
     }
 
@@ -25,9 +25,9 @@ class AddSortorderColumnToPostsTable extends Migration
      */
     public function down()
     {
-        //
-        Schema::table('posts', function (Blueprint $table){
-            $table->dropColumn('sortorder');
+        Schema::table('posts', function (Blueprint $table) {
+            //
+            $table->dropColumn('fee');
         });
     }
 }
