@@ -13,7 +13,7 @@
 <title>{{$page_title}} </title>
 <meta name="description" content="">
 <meta name="author" content="">
-
+<meta name="csrf_token" content="{{ csrf_token() }}" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <!-- Basic Styles -->
@@ -52,3 +52,22 @@
 <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
 <script src="{{url('')}}/js/libs/jquery-2.0.2.min.js"></script>
 <script src="{{url('')}}/js/libs/jquery-ui-1.10.3.min.js"></script>
+<style type="text/css" >
+    ul.imglist{
+        list-style: none;
+        list-style-image: none;
+    }
+    ul.imglist li{
+        float:left;
+        margin: 5px;
+    }
+    .widget-disabled  {
+        opacity: 0.5;
+    }
+    @media (min-width: 992px) {
+        .modal-lg {
+            width: 1000px;
+        }
+    }
+</style>
+

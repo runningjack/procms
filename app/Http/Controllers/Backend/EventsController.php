@@ -28,6 +28,60 @@ class EventsController extends Controller
         return View("backend.events.edit",["mypage"=>Post::find($pgId),"page_title"=>"Edit Event","title"=>"Edit Event","categories"=>$cats]);
     }
 
+    public function getEventCategoryList(){
+        return View("backend.events.categories",["page_title"=>"Edit Event","title"=>"Edit Event","categories"=>Post::where("type","=","event category")->get()]);
+    }
+
+    /**
+     * Post an event category into database.
+     * @param \Symfony\Component\HttpFoundation\Request;
+     */
+    public function postEventCategory(Request $request){
+        $input = $request->all();
+
+        $validator =   Validator::make($input, [
+            'title'  =>  'required|min:2|unique:posts',
+            'permalink'  =>  'required|min:2|unique:posts',
+
+        ]);
+
+        if($validator->fails()){
+            return Redirect::back()->withErrors($validator)->withInput();
+        }else{
+            $post = new  Post();
+            $post->title            =   $input['title'];
+            $post->p_content        =   $input['p_content'];
+            $post->permalink        =   $input['permalink'];
+            $post->description      =   $input['p_content'];
+            $post->type             =   $input['type'];
+            $post->created_by       =   "Admin";
+            //var_dump($post);
+            try {
+                if($post->save()){
+                    Session::flash("success_message","Category created");
+                    echo '<div class="alert alert-success fade in">
+                                        <button class="close" data-dismiss="alert">×</button>
+                                        <i class="fa-fw fa fa-times">Category created</div>';
+                }else{
+                    Session::flash("error_message","Unexpected Error Record could not be Category created");
+                    echo '<div class="alert alert-danger fade in">
+                                        <button class="close" data-dismiss="alert">×</button>
+                                        <i class="fa-fw fa fa-times">Unexpected Error</div>';
+                }
+
+                // $redirect = (isset($input['form_save'])) ? "backend/{$input['type']}s" : "backend/{$input['type']}s/create";
+
+                //return \Redirect::to($redirect)
+                // ->with('success_message', 'The ' . $this->type . ' was created.');
+            } catch(ValidationException $e) {
+                Session::flash("error_message","Unexpected Error! Category not created: ".$e->getMessage());
+                echo '<div class="alert alert-danger fade in">
+                                        <button class="close" data-dismiss="alert">×</button>
+                                        <i class="fa-fw fa fa-times">Unexpected Error! Category not created: '.$e->getMessage()."</div>";// \Redirect::back()->withInput()->withErrors($e->getErrors());
+            }
+        }
+    }
+
     public function  postAddNew(Request $request){
         $input = $request->all();
 
@@ -270,7 +324,6 @@ function num_to_letter($num, $uppercase = TRUE)
     return      ($uppercase ? strtoupper($letter) : $letter);
 }
 
-
 #####  This function will proportionally resize image #####
 function normal_resize_image($source, $destination, $image_type, $max_size, $image_width, $image_height, $quality){
 
@@ -302,7 +355,7 @@ function normal_resize_image($source, $destination, $image_type, $max_size, $ima
 function crop_image_square($source, $destination, $image_type, $square_size, $image_width, $image_height, $quality){
     if($image_width <= 0 || $image_height <= 0){return false;} //return false if nothing to resize
 
-    if( $image_width > $image_height )
+    if($image_width > $image_height)
     {
         $y_offset = 0;
         $x_offset = ($image_width - $image_height) / 2;

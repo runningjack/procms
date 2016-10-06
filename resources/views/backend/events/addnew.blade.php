@@ -475,7 +475,7 @@ include("inc/ribbon.php");
             </li>
         </ul>
         <div id="myTabContent2" class="tab-content padding-10">
-            <div class="tab-pane fade active" id="v1">
+            <div class="tab-pane fade in active" id="v1">
                 {{Form::open(array('action'=>array('Backend\EventsController@postAddNew', ""), 'method'=>'post', 'class'=>'form-horizontal', 'files'=>true,"onSubmit"=>"return false","enctype"=>"multipart/form-data","id"=>"MyUploadForm")) }}
                 <input name="image_file" id="imageInput" type="file" />
                 <input type="submit"  id="submit-btn" value="Upload" />

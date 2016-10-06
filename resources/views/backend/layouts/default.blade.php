@@ -5,6 +5,8 @@
  * Date: 9/8/16
  * Time: 11:10 AM
  */
+require_once(public_path()."/inc/init.php");
+require_once(public_path()."/inc/config.ui.php");
 ?>
 <!DOCTYPE html>
 <html lang="en-us" <?php //echo implode(' ', array_map(function($prop, $value) {
@@ -269,7 +271,8 @@
 <!-- ==========================CONTENT STARTS HERE ========================== -->
 <!-- MAIN PANEL -->
 <div id="main" role="main">
-
+   <?php  include("inc/nav.php"); ?>
+    <!-- END NAVIGATION -->
     @yield("breadcrumb")
     @include("backend.includes.ribbon")
 

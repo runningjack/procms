@@ -344,9 +344,10 @@ include("inc/ribbon.php");
             </li>
         </ul>
         <div id="myTabContent2" class="tab-content padding-10">
-            <div class="tab-pane fade active" id="v1">
+            <div class="tab-pane fade in active" id="v1">
                 {{Form::open(array('action'=>array('Backend\PostsController@postAddNew', ""), 'method'=>'post', 'class'=>'form-horizontal', 'files'=>true,"onSubmit"=>"return false","enctype"=>"multipart/form-data","id"=>"MyUploadForm")) }}
                 <input name="image_file" id="imageInput" type="file" />
+                <input type="hidden" name="faction" id="faction" value="featured image">
                 <input type="submit"  id="submit-btn" value="Upload" />
                 <img src="{{url('')}}/img/loading.gif" id="loading-img" style="display:none;" alt="Please Wait"/>
                 </form>
@@ -400,20 +401,20 @@ include("inc/ribbon.php");
 
 <script src="{{url('')}}/js/plugin/ckeditor/ckeditor.js"></script>
 <script>
-    function getRootUrl(){
-        var curLocation = location.href;
-        var domain;
-        //find & remove protocol (http, ftp, etc.) and get domain
-        if (curLocation.indexOf("://") > -1) {
-            domain = curLocation.split('/')[2];
-        }
-        else {
-            domain = curLocation.split('/')[0];
-        }
-        //find & remove port number
-        domain = domain.split(':')[0];
-        return domain;
+function getRootUrl(){
+    var curLocation = location.href;
+    var domain;
+    //find & remove protocol (http, ftp, etc.) and get domain
+    if (curLocation.indexOf("://") > -1) {
+        domain = curLocation.split('/')[2];
     }
+    else {
+        domain = curLocation.split('/')[0];
+    }
+    //find & remove port number
+    domain = domain.split(':')[0];
+    return "http://"+domain;
+}
 
 
     $(document).ready(function() {
@@ -471,7 +472,7 @@ include("inc/ribbon.php");
         $(".radimg").each(function(){
             $(this).click(function(){
                 $("#image").val($(this).val())
-                $("#imgg").html("<img src="+getRootUrl()+"/uploads/images/"+$(this).val()+ "' height='100' weight='100'>")
+                $("#imgg").html("<img src='"+getRootUrl()+"/uploads/images/"+$(this).val()+ "' height='100' weight='100'>")
                 return false
             })
         })
@@ -548,6 +549,7 @@ include("inc/ribbon.php");
             //alert(data)
             var md = data.split("@@");
             $("#image").val(md[1])
+
             $("#imgg").html("<img src='"+getRootUrl()+"/uploads/images/"+md[1]+ "' height='100' weight='100'>")
 
         }

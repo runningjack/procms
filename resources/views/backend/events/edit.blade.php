@@ -480,7 +480,6 @@ include("inc/ribbon.php");
                 <h4>Document <small>(.PDF,.DOC,.DOCX)</small></h4>
                 <div class="col-12 col-md-12 col-lg-12">
 
-
                     <div class="form-group">
 
                         <div >
@@ -508,63 +507,66 @@ include("inc/ribbon.php");
 </section><!-- End of Section-->
 <div style='display:none'>
     <div id='inline_content2' style='padding:10px; background:#fff;'>
+        <div class="row">
+            <div class="col-md-8">
+                <ul id="myTab2" class="nav nav-tabs bordered">
+                    <li class="active">
+                        <a href="#v1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-upload"></i>Upload File</a>
+                    </li>
+                    <li>
+                        <a href="#v2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-camera"></i>Images</a>
+                    </li>
+                </ul>
+                <div id="myTabContent2" class="tab-content padding-10">
+                    <div class="tab-pane fade in active" id="v1">
+                        {{Form::open(array('action'=>array('Backend\EventsController@postAddNew', ""), 'method'=>'post', 'class'=>'form-horizontal', 'files'=>true,"onSubmit"=>"return false","enctype"=>"multipart/form-data","id"=>"MyUploadForm")) }}
+                        <input name="image_file" id="imageInput" type="file" />
+                        <input type="submit"  id="submit-btn" value="Upload" />
+                        <img src="{{url('')}}/img/loading.gif" id="loading-img" style="display:none;" alt="Please Wait"/>
+                        </form>
+                        <div id="progressbox" style="display:none;"><div id="progressbar"></div><div id="statustxt">0%</div></div>
+                        <div id="output">
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v2">
+                        <div id="mmd">
+                            <h3>Images</h3>
+                            <?php
+                            //Open images directory
+                            $dir = opendir(public_path()."/uploads/images/");
 
-        <ul id="myTab2" class="nav nav-tabs bordered">
-            <li class="active">
-                <a href="#v1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-upload"></i>Upload File</a>
-            </li>
-            <li>
-                <a href="#v2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-camera"></i>Images</a>
-            </li>
-        </ul>
-        <div id="myTabContent2" class="tab-content padding-10">
-            <div class="tab-pane fade active" id="v1">
-                {{Form::open(array('action'=>array('Backend\EventsController@postAddNew', ""), 'method'=>'post', 'class'=>'form-horizontal', 'files'=>true,"onSubmit"=>"return false","enctype"=>"multipart/form-data","id"=>"MyUploadForm")) }}
-                <input name="image_file" id="imageInput" type="file" />
-                <input type="submit"  id="submit-btn" value="Upload" />
-                <img src="{{url('')}}/img/loading.gif" id="loading-img" style="display:none;" alt="Please Wait"/>
-                </form>
-                <div id="progressbox" style="display:none;"><div id="progressbar"></div><div id="statustxt">0%</div></div>
-                <div id="output">
-
-                </div>
-            </div>
-            <div class="tab-pane fade" id="v2">
-                <div id="mmd">
-                    <h3>Images</h3>
-                    <?php
-                    //Open images directory
-                    $dir = opendir(public_path()."/uploads/images/");
-
-                    //List files in images directoryb
-                    while (($file = readdir($dir)) !== false) {
-                        if(substr( $file, -3 ) == "jpg" || substr( $file, -3 ) == "png" || substr( $file, -3 ) == "JPG" ) {
-                            $filelist[] = $file;
-
-                        }
-                    }
-                    closedir($dir);
-                    sort($filelist);
-                    echo "<ul class='imglist'>";
-                    for($i=0; $i<count($filelist); $i++) {
-                        echo "<li><label><input class='form-control radio radimg' type='radio' id='input$i' name='inpute' value='$filelist[$i]'><img
+                            //List files in images directoryb
+                            while (($file = readdir($dir)) !== false) {
+                                if(substr( $file, -3 ) == "jpg" || substr( $file, -3 ) == "png" || substr( $file, -3 ) == "JPG" ) {
+                                    $filelist[] = $file;
+                                }
+                            }
+                            closedir($dir);
+                            sort($filelist);
+                            echo "<ul class='imglist'>";
+                            for($i=0; $i<count($filelist); $i++) {
+                                echo "<li><label><input class='form-control radio radimg' type='radio' id='input$i' name='inpute' value='$filelist[$i]'><img
                                   src='".url('')."/uploads/images/".$filelist[$i] ."' width='100' height='100'></label></li>";
+                            }
+                            echo "</ul>";
+                            ?>
+                        </div>
+                        <br clear="all">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <p>&nbsp;</p>
 
-
-                    }
-                    echo "</ul>";
-                    ?>
-                </div>
-                <br clear="all">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <p>&nbsp;</p>
-
-                        <a href="#" class="btn btn-img btn-primary">Set As Setting</a>
+                                <a href="#" class="btn btn-img btn-primary">Set As Setting</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="col-md-4">
+
+            </div>
         </div>
+
     </div>
 </div>
 <!-- PAGE RELATED PLUGIN(S)-->

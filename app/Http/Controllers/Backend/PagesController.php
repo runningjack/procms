@@ -76,6 +76,29 @@ class PagesController extends Controller
 
     public function postEditPage(Request $request, $pgId){
         $input = $request->all();
+        //procedure designed for deleting posts
+        if($request->ajax()){
+            if(isset($input['action']) && $input['action'] == "delete"){
+                $post = Post::find($input['id']);
+                $checkPost = Post::where("parent_id",$input['id'])->first();
+
+                if(is_null($checkPost)){
+                    if($post->delete()){
+                        Session::flash("success_message","record successfully deleted from database");
+                        return response()->json(["data"=>"record successfully deleted from database","status"=>200]);
+                    }else{
+                        Session::flash("error_message","Unexpected Error! Record could not be deleted");
+                        return response()->json("Unexpected Error! Record could not be deleted",500);
+                    }
+                }else{
+                    Session::flush("error_message","This record is associated with another record(s) in the database! Record cannot be deleted at this time");
+                    return response()->json(["data"=>"This record is associated with another record(s) in the database! Record cannot be deleted at this time","status"=>400]);
+                }
+                exit;
+            }
+        }
+
+
         /**
          * Validate the inputs before they are sent
          * to database
@@ -104,6 +127,7 @@ class PagesController extends Controller
             foreach($input as $key=>$value){
                 $post->$key = $value;
             }
+            $post->updated_at = date("Y-m-d H:i:s");
             if($post->update()){
                 if($request->ajax()){
                     return response()->json("record successfully updated");

@@ -59,17 +59,20 @@
         </div>
     </div>
 </div>
+
 <!-- END PAGE FOOTER -->
 <?php
 include_once("inc/scripts.php")
-
 ?>
+
 <script src="{{url('')}}/js/plugin/ckeditor/ckeditor.js"></script>
 <script src="{{url('')}}/js/jquery.form.min.js"></script>
 <script src="{{url('')}}/js/plugin/colorbox/jquery.colorbox.js"></script>
+<script src="{{url('')}}/js/plugin/jquery-nestable/jquery.nestable.min.js"></script>
 
 <script>
     $(document).ready(function(){
-        $(".inline2").colorbox({inline:true, width:"80%",height:"80%"});
+
+
     })
 </script>

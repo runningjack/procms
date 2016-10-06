@@ -22,7 +22,7 @@ Route::group(array('prefix' => 'backend'), function() {
     Route::get("pages/addnew",['as'=>'addnewpage',"uses"=>"Backend\PagesController@getAddNew"]);
     Route::post("pages/addnew",["uses"=>"Backend\PagesController@postAddNew"]);
     Route::get("pages/edit/{id?}",["as"=>"editpage","uses"=>"Backend\PagesController@getEditPage"]);
-    Route::post("pages/edit/{id?}",["uses"=>"Backend\PagesController@postEditPage"]);
+    Route::post("pages/edit/{id?}",["uses"=>"Backend\PagesController@postEditPage"]); // Used for all kinds of post table delete
 
     /**
      * Route for post
@@ -33,6 +33,8 @@ Route::group(array('prefix' => 'backend'), function() {
     Route::get("posts/edit/{id?}",["as"=>"editpost","uses"=>"Backend\PostsController@getEditPost"]);
     Route::post("posts/addnew/{type?}",["uses"=>"Backend\PostsController@postAddNew"]);
     Route::post("posts/edit/{type?}",["uses"=>"Backend\PostsController@postEditPost"]);
+    Route::get("posts/categories",["uses"=>"Backend\PostsController@getPostCategoryList"]);
+    Route::post("posts/categories",['uses'=>"Backend\PostsController@postPostCategory"]);
 
     /**
      * Route for Event
@@ -43,4 +45,19 @@ Route::group(array('prefix' => 'backend'), function() {
     Route::get("events/edit/{id?}",["as"=>"editevent","uses"=>"Backend\EventsController@getEditEvent"]);
     Route::post('events/addnew', array('uses'=>'Backend\EventsController@postAddNew'));
     Route::post("events/edit/{id?}",["uses"=>"Backend\EventsController@postAddNew"]);
+    Route::get("events/categories",["uses"=>"Backend\EventsController@getEventCategoryList"]);
+    Route::post("events/categories",['uses'=>"Backend\EventsController@postEventCategory"]);
+
+    /**
+     * Route for menu
+     */
+    Route::get("menu/index/{id?}",array("as"=>"menuhome","uses"=>"Backend\MenuController@getIndex"));
+    Route::post("menu/index",array("as"=>"index","uses"=>'Backend\MenuController@postMenuHome'));
+
+    /**
+     * Route for sliders
+     */
+
+    Route::get("sliders/index/{id?}",["as"=>"sliderhome","uses"=>"Backend\SlidersController@index"]);
+    Route::post("sliders/index/{id?}",["uses"=>"Backend\SlidersController@postIndex"]);
 });

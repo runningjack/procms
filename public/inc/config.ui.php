@@ -9,7 +9,6 @@ $breadcrumbs = array(
 );
 
 /*navigation array config
-
 ex:
 "dashboard" => array(
 	"title" => "Display Title",
@@ -19,7 +18,6 @@ ex:
 	"label_htm" => "<span>Add your custom label/badge html here</span>",
 	"sub" => array() //contains array of sub items with the same format as the parent
 )
-
 */
 $page_nav = array(
 	"dashboard" =>array(
@@ -56,6 +54,9 @@ $page_nav = array(
                 "icon" => "fa-stack-overflow",
                 "url"=>APP_URL."/backend/posts/index"
             ),
+            "categories"=>array(
+                "title"=>"Post Categories","icon"=>"fa-external-link","url"=>APP_URL."/backend/posts/categories"
+            ),
             "addnew"=>array(
                 "title"=>"Add New Post","icon"=>"fa-external-link","url"=>APP_URL."/backend/posts/addnew"
             )
@@ -72,9 +73,23 @@ $page_nav = array(
             ),
             "addnew"=>array(
                 "title"=>"Add New Event","icon"=>"fa-external-link","url"=>APP_URL."/backend/events/addnew"
+            ),
+            "categories"=>array(
+                "title"=>"Event Categories","icon"=>"fa-external-link","url"=>APP_URL."/backend/events/categories"
             )
         )
+    ),
+    "menu"=>array(
+        "title"=>"Menu",
+        "icon"=>"fa-navicon",
+        "url"=>APP_URL."/backend/menu/index"
+    ),
+    "slider"=>array(
+        "title"=>"Slider",
+        "icon"=>"fa-camera",
+        "url"=>APP_URL."/backend/sliders/index"
     )
+
 
 );
 
